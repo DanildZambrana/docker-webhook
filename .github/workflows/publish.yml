@@ -11,8 +11,8 @@ jobs:
               registry: ghcr.io
               username: ${{ github.actor }}
               password: ${{ secrets.GITHUB_TOKEN }}
-                - name: Build and push Docker image
-                run: |
-                  docker build . -t ghcr.io/DanildZambrana/${{ github.repository }}/webhook:latest
-                  docker run -d -p 5030:80 ghcr.io/DanildZambrana/${{ github.repository }}/webhook:latest
-                  docker push ghcr.io/DanildZambrana/${{ github.repository }}/webhook:latest
+        - name: Build and push Docker image
+          run: |
+            docker build . -t ghcr.io/DanildZambrana/${{ github.repository }}/webhook:latest
+            docker run -d -p 5030:80 ghcr.io/DanildZambrana/${{ github.repository }}/webhook:latest
+            docker push ghcr.io/DanildZambrana/${{ github.repository }}/webhook:latest
