@@ -13,7 +13,7 @@ jobs:
               password: ${{ secrets.GITHUB_TOKEN }}
         - name: Build and push Docker image
           run: |
-            REPO_LOWER=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
-            docker build . -t ghcr.io/$REPO_LOWER/webhook:latest
-            docker run -d -p 5030:80 ghcr.io/$REPO_LOWER/webhook:latest
-            docker push ghcr.io/$REPO_LOWER/webhook:latest
+            REPO_LOWER=$(echo ${{ github.actor }} | tr '[:upper:]' '[:lower:]')
+            docker build . -t ghcr.io/$REPO_LOWER/docker-webhook:latest
+            docker run -d -p 5030:80 ghcr.io/$REPO_LOWER/docker-webhook:latest
+            docker push ghcr.io/$REPO_LOWER/docker-webhook:latest
