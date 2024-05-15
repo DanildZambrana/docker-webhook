@@ -20,16 +20,24 @@ export WEBHOOK_SECRET=secret
 docker build -t webhook .
 ```
 
-### Or get them from github docker registry
+Or get them from github docker registry
     
 ```bash
 docker pull ghcr.io/danildzambrana/docker-webhook:main
 ```
 
+You can check the image is downloaded with the following command:
+
+```bash
+docker images ls
+```
+
+and check the image is in the list.
+
 ### Run the Docker container
 
 ```bash
-docker run -p 5030:80 --privileged --name webhook -e WEBHOOK_SECRET="TOKEN_HERE" -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/danildzambrana/docker-webhook:main uvicorn main:app --host 0.0.0.0 --port 80
+docker run -p 5030:80 --privileged --name webhook -e WEBHOOK_SECRET -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/danildzambrana/docker-webhook:main uvicorn main:app --host 0.0.0.0 --port 80
 ``` 
 
 or you can run the compose file [compose.yml](compose.yml) with the following command:
