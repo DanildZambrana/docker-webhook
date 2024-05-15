@@ -29,9 +29,13 @@ docker pull ghcr.io/danildzambrana/docker-webhook:main
 ### Run the Docker container
 
 ```bash
-docker run -p 5030:80 --privileged --name webhook -v /var/run/docker.sock:/var/run/docker.sock webhook  uvicorn main:app --host 0.0.0.0 --port 80
+docker run -p 5030:80 --privileged --name webhook -e WEBHOOK_SECRET="TOKEN_HERE" -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/danildzambrana/docker-webhook:main uvicorn main:app --host 0.0.0.0 --port 80
 ``` 
+
 or you can run the compose file [compose.yml](compose.yml) with the following command:
+> [!NOTE]  
+> Remember to check the image name in the compose file, if you build the image with the name `webhook` you don't need to change anything, otherwise you need to change the image name in the compose file.
+
 ```bash
 docker-compose up -d
 ```
